@@ -29,8 +29,8 @@ def someVars():
 
 	problem = 'Здравствуйте, есть вопрос, прошу перезвонить!'
     
-	messages = ('Здравствуйте, есть вопрос, прошу перезвонить!', 'Добрый день! Нужна консультация, прошу перезвонить!', 'Здравствуйте! Пожалуйста, перезвоните мне, спасибо!', 'Доброго дня, у меня есть вопрос, прошу вас перезвонить.', 'Приветствую! Пожалуйста, перезвоните!', 'Интересует вопрос по услуге, прошу перезвонить', 'Пожалуйста, свяжитесь со мной', 'Добрый день, жду Вашего звонка!')
-	randomproblem = random.choice(messages)
+    #messages = ('Здравствуйте, есть вопрос, прошу перезвонить!', 'Добрый день! Нужна консультация, прошу перезвонить!', 'Здравствуйте! Пожалуйста, перезвоните мне, спасибо!', 'Доброго дня, у меня есть вопрос, прошу вас перезвонить.', 'Приветствую! Пожалуйста, перезвоните!', 'Интересует вопрос по услуге, прошу перезвонить', 'Пожалуйста, свяжитесь со мной', 'Добрый день, жду Вашего звонка!')
+    #randomproblem = random.choice(messages)
 
 
 def main ():
@@ -63,17 +63,17 @@ def main ():
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')
 	try:
-		streetfoot = requests.post ('https://yaroslavl.streetfoot.ru/newforms/callbackform/callback-mail.php', data = {'firstauthor' : name, 'firstphone' : phoneNum, 'firstemail' : randomemail, 'firstcomment' : randomproblem})
+		streetfoot = requests.post ('https://yaroslavl.streetfoot.ru/newforms/callbackform/callback-mail.php', data = {'firstauthor' : name, 'firstphone' : phoneNum, 'firstemail' : randomemail, 'firstcomment' : problem})
 		print(Fore.GREEN + 'Запрос отправлен: yaroslavl.streetfoot.ru')
-	except:
+	except requests.RequestException:
 		print(Fore.RED + 'Запрос не отправлен :(')
 	try:				
-		stepman = requests.post ('https://step-man.com/callback/callback-mail.php', data = {'firstauthor' : name, 'firstphone' : phoneNum, 'firstemail' : randomemail, 'firstcomment' : randomproblem})
+		stepman = requests.post ('https://step-man.com/callback/callback-mail.php', data = {'firstauthor' : name, 'firstphone' : phoneNum, 'firstemail' : randomemail, 'firstcomment' : problem})
 		print(Fore.GREEN + 'Запрос отправлен: step-man.com')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
 	try:
-		prosto = requests.post ('https://pro100krossovki.ru/call', data = {'name' : name, 'phone' : phoneNum, 'mail' : randomemail, 'message' : randomproblem})
+		prosto = requests.post ('https://pro100krossovki.ru/call', data = {'name' : name, 'phone' : phoneNum, 'mail' : randomemail, 'message' : problem})
 		print(Fore.GREEN + 'Запрос отправлен: pro100krossovki.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
@@ -83,16 +83,16 @@ def main ():
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
 	try:		
-		diskkros = requests.post ('http://discount-krossovki.ru/call', data = {'name' : name, 'phone' : phoneNum, 'mail' : randomemail, 'message' : randomproblem})
+		diskkros = requests.post ('http://discount-krossovki.ru/call', data = {'name' : name, 'phone' : phoneNum, 'mail' : randomemail, 'message' : problem})
 		print(Fore.GREEN + 'Запрос отправлен: discount-krossovki.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')
 	try:		
-		sportshoes = requests.post ('https://sportshoes-shop.ru/mailer/sendmessage', data = {'formType' : '1', 'fio' : name, 'phone' : phoneNum, 'field1' : randomemail, 'content' : randomproblem})
+		sportshoes = requests.post ('https://sportshoes-shop.ru/mailer/sendmessage', data = {'formType' : '1', 'fio' : name, 'phone' : phoneNum, 'field1' : randomemail, 'content' : problem})
 		print(Fore.GREEN + 'Запрос отправлен: sportshoes-shop.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
-	try:		
+    try:		
 		moneza = requests.post ('https://www.moneza.ru/wp-content/api-client/api.php?request=callBackRequest', data = {'clientFullName' : name, 'phoneNumber' : phoneNum})	
 		print(Fore.GREEN + 'Запрос отправлен: moneza.ru')
 	except:
@@ -113,7 +113,7 @@ def main ():
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')									
 	try:		
-		epleads = requests.post('https://epleads.ru/gate/api.php', data={'question': randomproblem,'region': 'Москва','first_lastname': name,'phone': phoneNum,'ofrid': '1','wid': '3','presetid': '4','referer': 'https://potreb-prava.com/konsultaciya-yurista/konsultaciya-onlajn-yurista-besplatno-kruglosutochno.html','ip': '23.54.155.49','mobile': '0','template': 'form_master.new.fix.metrik_lawyer-blue-default','product': 'lawyer','userSoftData': '*'})
+		epleads = requests.post('https://epleads.ru/gate/api.php', data={'question': problem,'region': 'Москва','first_lastname': name,'phone': phoneNum,'ofrid': '1','wid': '3','presetid': '4','referer': 'https://potreb-prava.com/konsultaciya-yurista/konsultaciya-onlajn-yurista-besplatno-kruglosutochno.html','ip': '23.54.155.49','mobile': '0','template': 'form_master.new.fix.metrik_lawyer-blue-default','product': 'lawyer','userSoftData': '*'})
 		print(Fore.GREEN + 'Запрос отправлен: epleads.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
@@ -123,7 +123,7 @@ def main ():
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')				
 	try:		
-		pravosfera = requests.post('https://pravo-sfera.ru/zayavk/', data={'cname': name, 'c_tel' : phoneNumVodaonline, 'quest': randomproblem, 'quest_go': 'Задать вопрос'})
+		pravosfera = requests.post('https://pravo-sfera.ru/zayavk/', data={'cname': name, 'c_tel' : phoneNumVodaonline, 'quest': problem, 'quest_go': 'Задать вопрос'})
 		print(Fore.GREEN + 'Запрос отправлен: pravo-sfera.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
@@ -133,12 +133,12 @@ def main ():
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')		
 	try:		
-		gosurist = requests.post('http://www.gos-urist.ru/send.php', {'name': name, 'code': phoneNum, 'phone': phoneNum, 'issue': randomproblem})
+		gosurist = requests.post('http://www.gos-urist.ru/send.php', {'name': name, 'code': phoneNum, 'phone': phoneNum, 'issue': problem})
 		print(Fore.GREEN + 'Запрос отправлен: gos-urist.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
 	try:		
-		ur9911030 = requests.post('http://9911030.ru/orderform.php', {'name': name, 'phone': phoneNum, 'message': randomproblem})
+		ur9911030 = requests.post('http://9911030.ru/orderform.php', {'name': name, 'phone': phoneNum, 'message': problem})
 		print(Fore.GREEN + 'Запрос отправлен: 9911030.ru')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')	
@@ -148,7 +148,7 @@ def main ():
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(') 
 	try:		
-		xiexpress = requests.get('https://xi.express/ajax/popup_callback.php', params={'sessid': '7b982d7c94989e44116b5176615b1071', 'save': 'Y', 'name': name, 'phone': phoneNum, 'selectedtype': 'Консультация по наличию и стоимости', 'numorders': '0', 'comment': randomproblem, 'subscribe': 'Y'})
+		xiexpress = requests.get('https://xi.express/ajax/popup_callback.php', params={'sessid': '7b982d7c94989e44116b5176615b1071', 'save': 'Y', 'name': name, 'phone': phoneNum, 'selectedtype': 'Консультация по наличию и стоимости', 'numorders': '0', 'comment': problem, 'subscribe': 'Y'})
 		print(Fore.GREEN + 'Запрос отправлен: xi.express')
 	except:
 		print(Fore.RED + 'Запрос не отправлен :(')
